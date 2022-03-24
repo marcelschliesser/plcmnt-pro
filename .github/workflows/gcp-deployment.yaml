@@ -7,11 +7,12 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+
+      - uses: actions/checkout@v3
+      - name: Retrieve the secret and decode it to a file
       - env:
           GCP_SECRET_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
       - run: echo $GCP_SECRET_BASE64 | base64 --decode
-
-      -  uses: actions/checkout@v3
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
