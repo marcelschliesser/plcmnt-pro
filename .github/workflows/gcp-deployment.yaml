@@ -28,4 +28,4 @@ jobs:
 
       - id: 'gcloud'
         name: 'gcloud'
-        run: gcloud iam service-accounts list
+        run: gcloud run services list
