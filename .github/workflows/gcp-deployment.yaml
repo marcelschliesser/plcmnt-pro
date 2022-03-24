@@ -21,7 +21,7 @@ jobs:
           GCP_SECRET_BASE64: ${{ secrets.GCP_DEPLOYER }}
         uses: 'google-github-actions/auth@v0.6.0'
         with:
-          credentials_json: $GCP_SECRET_BASE64
+          credentials_json: '${{ secrets.GCP_DEPLOYER }}'
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0.6.0'
