@@ -1,5 +1,5 @@
 # plcmnt-pro
-Read data from a Google Sheet and present it via a Flask App to the end user!
+Read data from a Google Sheet and present it via a Flask App to the end user.
 
 ## Create Service Account JSON
 ```
