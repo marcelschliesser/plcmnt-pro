@@ -12,7 +12,7 @@ jobs:
 
       - name: Retrieve the secret and decode it to a file
         env:
-          GCP_SECRET_BASE64: ${{ secrets.GOOGLE_CREDENTIALS }}
+          GCP_SECRET_BASE64: ${{ secrets.GCP_DEPLOYER }}
         run: echo $GCP_SECRET_BASE64 | base64 --decode
 
       - id: 'auth'
