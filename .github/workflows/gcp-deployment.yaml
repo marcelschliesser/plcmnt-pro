@@ -1,12 +1,16 @@
-name: GitHub Actions Demo
+name: Deploy to Cloud Run
 on:
   push:
     branches:
       - dev
 jobs:
-  Explore-GitHub-Actions:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
+      - env:
+          GCP_SECRET_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+      - run: echo $GCP_SECRET_BASE64 | base64 --decode
+
       -  uses: actions/checkout@v3
 
       - id: 'auth'
@@ -15,9 +19,9 @@ jobs:
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      - id: 'gcloud'
+        name: 'gcloud'
+        run: gcloud iam service-accounts list
