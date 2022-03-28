@@ -12,6 +12,9 @@ jobs:
         with:
           ref: 'dev'
 
+      - name: 'list'
+        run: ls . && ls $GITHUB_WORKSPACE
+
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         env:
@@ -27,6 +30,6 @@ jobs:
         name: 'gcloud'
         run: gcloud run services list
 
-      - id: 'deploy'
-        name: 'deploy'
-        run: gcloud run deploy first-try --region=europe-west3 --source $GITHUB_WORKSPACE
+      #- id: 'deploy'
+      #  name: 'deploy'
+      #  run: gcloud run deploy first-try --region=europe-west3 --source $GITHUB_WORKSPACE
