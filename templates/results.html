@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+      <h1>Your Placement Domains ({{ results|length }})</h1>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Results for copy paste</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="{{ results|length }}">
+            {%- for res in results|sort %}
+                {{- res }}
+            {% endfor %}
+        </textarea>
+      </div>
+
+{% endblock %}
