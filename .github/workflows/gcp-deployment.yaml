@@ -9,6 +9,8 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
+        with:
+          - ref: dev
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
@@ -27,4 +29,4 @@ jobs:
 
       - id: 'deploy'
         name: 'deploy'
-        run: gcloud run deploy first-try --region=europe-west3 --source .
+        run: gcloud run deploy first-try --region=europe-west3 --source $GITHUB_WORKSPACE
