@@ -1,11 +1,12 @@
 import csv
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import google.auth
 import configparser
 
 from googleapiclient.discovery import build
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -22,6 +23,7 @@ def return_tlds(lst):
     return list(set(tlds))
 
 
+
 def return_topics(lst):
     topics1 = [topic[1] for topic in lst if topic[1] != 'null']
     topics2 = [topic[2] for topic in lst if topic[2] != 'null']
@@ -35,6 +37,15 @@ def return_results(lst, tld: str, category: str):
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+@app.route('/data')
+def data():
+    sheet_service = google_sheet_service()
+    sheet = sheet_service.spreadsheets()
+    results = sheet.values().get(spreadsheetId=config['GOOGLE_SHEET']['ID'],
+                                 range=config['GOOGLE_SHEET']['RANGE']).execute()
+    values = results.get('values', [])[1:]
+    return jsonify([{'domain': t[0], 'cat1': t[1], 'cat2': t[2], 'cat3': t[3]} for t in values])
 
 @app.route('/t1', methods=['GET', 'POST'])
 def t1():
