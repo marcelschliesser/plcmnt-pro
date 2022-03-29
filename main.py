@@ -16,6 +16,7 @@ def google_sheet_service():
     credentials, _ = google.auth.default(scopes=['https://www.googleapis.com/auth/spreadsheets.readonly'])
     sheets_service = build('sheets', 'v4', credentials=credentials)
     return sheets_service
+    
 
 
 def return_tlds(lst):
