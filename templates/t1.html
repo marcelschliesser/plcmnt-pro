@@ -17,28 +17,17 @@
         </div>
 
 
-        <div class="row g-2 mb-4">
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="topic" aria-label="Floating label select example" name="topic">
 
-                        <option value="{{ topics1[0] }}" selected>{{ topics1[0] }}</option>
-                        {% for topic in topics1[1:]|sort %}
-                            <option value="{{ topic }}">{{ topic }}</option>
+                <div class="form-floating mb-4">
+                    <select class="form-select" id="category" aria-label="Floating label select example" name="category">
+
+                        <option value="{{ categories[0] }}" selected>{{ categories[0] }}</option>
+                        {% for category in categories[1:]|sort %}
+                            <option value="{{ category }}">{{ category }}</option>
                         {% endfor %}
 
                     </select>
-                    <label for="topic">Choose a category</label>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <select class="form-select" id="topic2" aria-label="Floating label select example"
-                            name="topic2">
-                    </select>
-                    <label for="topic2">Choose a category</label>
-                </div>
-            </div>
+                    <label for="category">Choose a category</label>
         </div>
 
 
